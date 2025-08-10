@@ -1,1 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master of Cybersecurity | University of Colombo School of Computing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        :root {
+            --primary: #017CA5;
+            --secondary: #5DBEDB;
+            --body: #F1F5F8;
+            --text: #1D1D1B;
+            --secondary-dark: #1F3F56;
+            --white: #ffffff;
+            --shadow: rgba(1, 124, 165, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--body);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary-dark));
+            color: var(--white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px var(--shadow);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--white);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary-dark));
+            color: var(--white);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--text);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(93, 190, 219, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(93, 190, 219, 0.4);
+        }
+
+        /* Partner Logos */
+        .partners {
+            background: var(--white);
+            padding: 3rem 0;
+        }
+
+        .partners h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            font-size: 2rem;
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            align-items: center;
+            justify-items: center;
+        }
+
+        .logo-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 120px;
+            width: 100%;
+            max-width: 250px;
+        }
+
+        .logo-item img {
+            max-height: 80px;
+            max-width: 200px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-white {
+            background: var(--white);
+        }
+
+        .section-light {
+            background: var(--body);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-dark);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(93, 190, 219, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px var(--shadow);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 3px 15px var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            color: var(--secondary-dark);
+            font-weight: 500;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            background: var(--white);
+            margin: 1rem 0;
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 3px 15px var(--shadow);
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-dark);
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero {
+                padding: 2rem 0;
+            }
+
+            .partners {
+                padding: 2rem 0;
+            }
+
+            section {
+                padding: 2rem 0;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .logo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Fade in animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card, .timeline-item {
+            animation: fadeIn 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">UCSC Cybersecurity Masters</div>
+            <button class="mobile-menu" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#curriculum">Curriculum</a></li>
+                <li><a href="#outcomes">Outcomes</a></li>
+                <li><a href="#partners">Partners</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Master of Cybersecurity</h1>
+            <p>Distance Learning Program for IT Professionals in Asia</p>
+            <a href="#overview" class="cta-button">Learn More</a>
+        </div>
+    </section>
+
+    <section class="partners">
+        <div class="container">
+            <h2>Supported By</h2>
+            <div class="logo-grid">
+                <div class="logo-item">
+                    <img src="images/logos/tein-logo.png" alt="TEIN*CC Cooperation Center" loading="lazy">
+                </div>
+                <div class="logo-item">
+                    <img src="images/logos/asia-connect-logo.png" alt="Asi@Connect" loading="lazy">
+                </div>
+                <div class="logo-item">
+                    <img src="images/logos/eu-logo.png" alt="European Union" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="overview" class="section-white">
+        <div class="container">
+            <h2>Program Overview</h2>
+            <div class="highlight-box">
+                <h3>Empowering Cybersecurity Leaders Across Asia</h3>
+                <p>A comprehensive 4-semester Master's program launched by the University of Colombo School of Computing (UCSC), designed specifically for IT professionals and NREN staff in developing Asian countries.</p>
+            </div>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Semesters</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">16</div>
+                    <div class="stat-label">Core Modules</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Countries</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">14</div>
+                    <div class="stat-label">Graduates</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="curriculum" class="section-light">
+        <div class="container">
+            <h2>Curriculum & Delivery</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Advanced Modules</h3>
+                    <p>Comprehensive coverage of critical cybersecurity domains including Cryptography, Malware Analysis, Network Security, Digital Forensics, Mobile Security, Risk Management, and Incident Response.</p>
+                </div>
+                <div class="card">
+                    <h3>Hybrid Learning</h3>
+                    <p>Innovative combination of asynchronous eLearning and hands-on laboratory sessions, with in-person training in Colombo and seamless transition to online delivery during global challenges.</p>
+                </div>
+                <div class="card">
+                    <h3>Practical Focus</h3>
+                    <p>Real-world knowledge emphasis preparing students to become trainers and security leaders in their home countries, with rigorous examinations and practical assessments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="timeline" class="section-white">
+        <div class="container">
+            <h2>Program Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Semester 1 - April-May 2019</div>
+                    <p>Conducted in Colombo with 11 of 14 students participating despite April 21 security incidents in Sri Lanka. Deferred exam options provided for affected students.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Semester 2 - Nov-Dec 2019</div>
+                    <p>Full participation achieved with all 14 students completing hands-on training and examinations in Colombo.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Semesters 3 & 4 - 2020-2021</div>
+                    <p>Successfully adapted to fully online delivery due to COVID-19 pandemic, utilizing LMS and virtual laboratory environments.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2022 - Convocation</div>
+                    <p>Program completion with 3 students earning Distinction. All qualifying graduates eligible for convocation ceremony.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="outcomes" class="section-light">
+        <div class="container">
+            <h2>Key Outcomes & Impact</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Regional Capacity Building</h3>
+                    <p>Successfully trained 14 cybersecurity professionals from Afghanistan, Bangladesh, India, Myanmar, Nepal, Sri Lanka, and Thailand, establishing a foundation for sustainable regional cybersecurity capacity.</p>
+                </div>
+                <div class="card">
+                    <h3>Quality Courseware</h3>
+                    <p>Developed and published high-quality, regionally-relevant cybersecurity courseware accessible through the Learning Management System for continued use and reference.</p>
+                </div>
+                <div class="card">
+                    <h3>Resilient Delivery</h3>
+                    <p>Demonstrated program resilience by successfully completing all 4 semesters despite significant challenges including security incidents and global pandemic disruptions.</p>
+                </div>
+                <div class="card">
+                    <h3>Sustainable Model</h3>
+                    <p>Established framework for continuation as an international master's degree with graduate assistance in local training delivery and remote examination capabilities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="partners" class="section-white">
+        <div class="container">
+            <h2>Partner Organizations</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>University of Colombo School of Computing</h3>
+                    <p>Host institution providing academic leadership, courseware development, and examination services for the international cybersecurity master's program.</p>
+                </div>
+                <div class="card">
+                    <h3>National Research & Education Networks</h3>
+                    <p>Partner NRENs across 7 Asian countries providing student nominations and local support for program participants in their respective regions.</p>
+                </div>
+                <div class="card">
+                    <h3>TEIN*CC & Academic Advisors</h3>
+                    <p>Project partnership with TEIN*CC and academic advisory support from the University of Strathclyde ensuring program quality and regional relevance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="highlight-box" style="margin: 0;">
+        <div class="container">
+            <h2 style="color: white;">Supporting UN Sustainable Development Goals</h2>
+            <div class="grid">
+                <div style="text-align: center;">
+                    <h3 style="color: white;">SDG 4</h3>
+                    <p>Quality Education</p>
+                </div>
+                <div style="text-align: center;">
+                    <h3 style="color: white;">SDG 9</h3>
+                    <p>Industry, Innovation and Infrastructure</p>
+                </div>
+                <div style="text-align: center;">
+                    <h3 style="color: white;">SDG 17</h3>
+                    <p>Partnerships for the Goals</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <p>University of Colombo School of Computing</p>
+                    <p>35, Reid Avenue, Colombo 00700, Sri Lanka</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Program Support</h3>
+                    <p>Funded by Asi@Connect and the European Commission</p>
+                    <p>Call: 2nd Call for Proposals - ACA2016/376-562</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Future Directions</h3>
+                    <p>Continuing as an international master's degree program</p>
+                    <p>Empowering regional training hubs</p>
+                </div>
+            </div>
+            <div style="border-top: 1px solid rgba(93, 190, 219, 0.3); padding-top: 2rem; margin-top: 2rem;">
+                <p>&copy; 2024 University of Colombo School of Computing. Master of Cybersecurity Distance Learning Program.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'linear-gradient(135deg, rgba(1, 124, 165, 0.95), rgba(31, 63, 86, 0.95))';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, var(--primary), var(--secondary-dark))';
+                header.style.backdropFilter = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
